@@ -1,0 +1,103 @@
+body {
+    background-color: #F8B195;
+}
+
+h2 {
+    color: #8458B3;
+}
+
+.carousel {
+    padding: 30px;
+}
+
+.d-flex img {
+    margin-right: 40px;
+}
+
+footer {
+    margin-top: 10px;
+}
+
+.card {
+    background-color: #6C5B7B;
+    color: #E9DD8A;
+}
+
+.btn-primary {
+    background-color: #355C7D;
+    border: #355C7D;
+
+}
+
+.btn-primary:hover {
+    background-color: #ffa500;
+}
+
+.card:hover {
+    transform: scale(1.030);
+    /* increase the scale to make it pop up more */
+    transition: transform 0.2s ease-in-out;
+    /* add a transition effect */
+    color: aqua;
+}
+
+
+
+.jump {
+    animation-name: jump;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes jump {
+    0% {
+        transform: translateY(0);
+    }
+
+    25% {
+        transform: translateY(-3px);
+    }
+
+    50% {
+        transform: translateY(0);
+    }
+
+    75% {
+        transform: translateY(-5px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+
+
+
+
+.carousel-item img {
+    width: 700px;
+    height: 383px;
+}
+
+.carousel-item {
+    transition: transform 0.6s ease;
+}
+
+.carousel-item-next,
+.carousel-item-prev {
+    position: absolute;
+    top: 0;
+    width: 100%;
+}
+
+.carousel-item-next.carousel-item-left,
+.carousel-item-prev.carousel-item-right {
+    transform: translateX(0);
+}
+
+.carousel-item-next.carousel-item-right,
+.carousel-item-prev.carousel-item-left {
+    transform: translateX(0);
+}
