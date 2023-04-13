@@ -1,13 +1,26 @@
 body {
     background-color: #F8B195;
+
 }
 
 h2 {
     color: #6e78ff;
 }
 
+h3 {
+    margin-top: 20px;
+}
+
 .carousel {
     padding: 30px;
+}
+
+.servicep {
+    font-size: 25px;
+}
+
+.servicec {
+    font-size: 35px;
 }
 
 .d-flex img {
@@ -100,4 +113,12 @@ footer {
 .carousel-item-next.carousel-item-right,
 .carousel-item-prev.carousel-item-left {
     transform: translateX(0);
+}
+
+.services {
+    margin-top: 20px;
+}
+
+.col-lg-8 col-12 {
+    margin-top: 10px;
 }
