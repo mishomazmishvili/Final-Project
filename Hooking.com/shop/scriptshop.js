@@ -1,85 +1,164 @@
-const API_URL =
-    "https://api.themoviedb.org/3/discover/movie?sort_by=popularity.desc&api_key=3fd2be6f0c70a2a598f084ddfb75487c&page=1";
-const IMG_PATH = "https://image.tmdb.org/t/p/w1280";
-const SEARCH_API =
-    'https://api.themoviedb.org/3/search/movie?api_key=3fd2be6f0c70a2a598f084ddfb75487c&query="';
+// import products from './data.js';
+// console.log(products);
 
-const main = document.getElementById("main");
+// const container = document.getElementById('products-list');
+// products.forEach((product) => {
+//     container.innerHTML += `
+//     <div class="container">
+//       <div class= "imgcontainer">
+//         <img src="${product.image}" alt="${products.title}">
+//       </div>
+//       <div class="mt-3">
+//         <h1>${product.title}</h1>
+//         <p> Description:${product.description}</p>
+//         <p> Price:${product.price}</p>
+//       </div>
+//       <button>Add to cart</button>
+//     </div>
+//   `;
+// })
 
-getMovies(API_URL);
-async function getMovies(url) {
-    const res = await fetch(url);
-    const data = await res.json();
-    showMovies(data.results);
-}
+// const btn = document.querySelector("button");
+// btn.forEach((btn) => {
+//     btn.addEventListener('click', () => {
+//         console.log(btn.parentElement.children[1].children[0].textContent);
+//     })
+// })
 
-function showMovies(movie) {
-    console.log(movie);
-    main.innerHTML = "";
-    movie.forEach((movies) => {
-        const movieEl = document.createElement("div");
-        movieEl.classList.add("col-4");
-        movieEl.innerHTML = `
-        <div class="card bg-dark text-white mt-5" >
-                <img class="card-img" src="${IMG_PATH + movies.poster_path
-            }" alt="Card image">
-                <div class="card-img-overlay">
-                    <h5 class="card-title"> ${movies.title}</h5>
-                    <p class="card-text">  ${movies.overview}</p>
-                    <p class="card-text">Last updated 3 mins ago</p>
-            </div>
-        </div>
-        `;
-        main.appendChild(movieEl);
-        movieEl.addEventListener("click", () => {
-            const SingleMovies = {
-                Id: movies.id,
-                Title: movies.title,
-                Overview: movies.overview,
-                Poster: movies.poster_path,
-                Rating: movies.vote_average,
-                Count: movies.vote_count,
-            };
-            localStorage.setItem(
-                `SingleMovies`,
-                JSON.stringify(SingleMovies)
-            );
-        });
+
+// import products from './data.js';
+
+// const container = document.getElementById('products-list');
+// const cart = [];
+
+// products.forEach((product) => {
+//     container.innerHTML += `
+//     <div class="container">
+//       <div class= "imgcontainer">
+//         <img src="${product.image}" alt="${product.title}">
+//       </div>
+//       <div class="mt-3">
+//         <h1>${product.title}</h1>
+//         <p> Description:${product.description}</p>
+//         <p> Price:${product.price}</p>
+//       </div>
+//       <button class="add-to-cart-btn">Add to cart</button>
+//     </div>
+//   `;
+// });
+
+// const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+
+// addToCartButtons.forEach((btn) => {
+//     btn.addEventListener('click', () => {
+//         const productTitle = btn.parentElement.children[1].children[0].textContent;
+//         const selectedProduct = products.find(product => product.title === productTitle);
+//         cart.push(selectedProduct);
+//         localStorage.setItem('cart', JSON.stringify(cart));
+//         console.log(`${productTitle} has been added to the cart`);
+//     });
+// });
+
+// let cartItems = [];
+
+// const addToCartBtns = document.querySelectorAll('button');
+// addToCartBtns.forEach((btn) => {
+//     btn.addEventListener('click', () => {
+//         const product = btn.parentElement;
+//         const title = product.querySelector('h1').textContent;
+//         const price = product.querySelector('p:last-of-type').textContent;
+//         const item = { title, price };
+//         cartItems.push(item);
+//         console.log(cartItems);
+//     });
+// });
+
+// const shoppingCart = document.getElementById('shopping-cart');
+// shoppingCart.addEventListener('click', () => {
+//     if (cartItems.length > 0) {
+//         let cartContent = '';
+//         cartItems.forEach((item) => {
+//             cartContent += `
+//                 <div>
+//                     <p>${item.title}</p>
+//                     <p>${item.price}</p>
+//                 </div>
+//             `;
+//         });
+//         shoppingCart.innerHTML = cartContent;
+//     } else {
+//         shoppingCart.innerHTML = alert('<p>Your cart is empty</p>');
+//     }
+// });
+
+
+import products from './data.js';
+
+const container = document.getElementById('products-list');
+const cart = [];
+
+products.forEach((product) => {
+    container.innerHTML += `
+    <div class="container">
+      <div class= "imgcontainer">
+        <img src="${product.image}" alt="${product.title}">
+      </div>
+      <div class="mt-3">
+        <h1>${product.title}</h1>
+        <p> Description:${product.description}</p>
+        <p> Price:${product.price}</p>
+      </div>
+      <button class="add-to-cart-btn">Add to cart</button>
+    </div>
+  `;
+});
+
+const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+
+addToCartButtons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const productTitle = btn.parentElement.children[1].children[0].textContent;
+        const selectedProduct = products.find(product => product.title === productTitle);
+        cart.push(selectedProduct);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        console.log(`${productTitle} has been added to the cart`);
     });
-}
+});
 
-const Cart = document.getElementById("CartItems");
-const CartMovies = localStorage.getItem(`SingleMovies`);
-const CartMoviesObj = JSON.parse(CartMovies);
-console.log(CartMoviesObj);
-const CartImg = `https://image.tmdb.org/t/p/w1280`;
-console.log(CartImg);
-ShowCart();
-function ShowCart() {
-    if (CartMoviesObj == null) {
-        Cart.innerHTML = `
-            <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <h1>Cart is empty</h1>
+const cartContent = document.createElement('div');
+cartContent.classList.add('cart-content');
+document.body.appendChild(cartContent);
+
+let cartItems = [];
+
+const addToCartBtns = document.querySelectorAll('button');
+addToCartBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+        const product = btn.parentElement;
+        const title = product.querySelector('h1').textContent;
+        const price = product.querySelector('p:last-of-type').textContent;
+        const item = { title, price };
+        cartItems.push(item);
+        console.log(cartItems);
+    });
+});
+
+const shoppingCart = document.getElementById('shopping-cart');
+shoppingCart.addEventListener('click', () => {
+    if (cart.length > 0) {
+        let cartContent = '';
+        cart.forEach((item) => {
+            cartContent += `
+                <div>
+                    <p>${item.title}</p>
+                    <p>${item.price}</p>
                 </div>
-            </div>
-            </div>
             `;
+        });
+        shoppingCart.innerHTML = cartContent;
     } else {
-
-        Cart.innerHTML = `
-    <a href="movie.html?${CartMoviesObj.Id}" class="btn btn-primary">
-                <div class="row">
-                <div class="col-4">
-                <img src="${CartImg + CartMoviesObj.Poster}" alt="Movie Poster" class="img-fluid"/>
-                </div>
-                <div class="col-8">
-                <h1>${CartMoviesObj.Title}</h1>    
-                    <p>${CartMoviesObj.Overview}</p>
-                </div>
-            </div>
-            </a>
-            `;
+        shoppingCart.innerHTML = alert('<p>Your cart is empty</p>');
     }
-}
+});
+
+

@@ -1,7 +1,6 @@
 body {
     /* background-image: linear-gradient(147deg, #000000 0%, #434343 74%); */
-
-    background-image: url(/Hooking.com/imgs/icons/babuin.jpg);
+    background-image: url(/Hooking.com/imgs/babuin.jpg);
     background-repeat: no-repeat;
     background-position: center center;
     background-size: cover;
@@ -10,10 +9,14 @@ body {
     height: 100%;
 }
 
+body::-webkit-scrollbar {
+    display: none;
+}
+
 
 
 .navbar-brand {
-    color: white;
+    color: white !important;
 }
 
 .nav-link.active {
@@ -22,7 +25,7 @@ body {
 
 
 .nav-link {
-    color: white;
+    color: white !important;
 }
 
 h1 {
@@ -42,7 +45,15 @@ h3 {
     padding: 30px;
 }
 
+.slideshow {
+    background-color: #2b4162;
+    background-image: linear-gradient(315deg, #2b4162 0%, #12100e 74%);
+
+    border-radius: 50px;
+}
+
 .servicep {
+
     font-size: 25px;
     color: white;
 }
@@ -61,7 +72,8 @@ footer {
 }
 
 .card {
-
+    margin-top: 10px;
+    border-radius: 15px;
     background-image: linear-gradient(326deg, #f8002f 0%, #000c14 74%);
     color: #E9DD8A;
 }
@@ -86,7 +98,7 @@ footer {
 
 
 
-/* .jump {
+.jump {
     animation-name: jump;
     animation-duration: 5s;
     animation-iteration-count: infinite;
@@ -113,7 +125,7 @@ footer {
     100% {
         transform: translateY(0);
     }
-} */
+}
 
 
 
