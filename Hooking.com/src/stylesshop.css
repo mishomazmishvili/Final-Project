@@ -1,10 +1,23 @@
 body {
-    background-color: black;
+    background-image: url(/Hooking.com/imgs/walppshop.jpg);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    width: 100%;
+    height: 100%;
     scroll-behavior: smooth;
+
+}
+
+
+
+body::-webkit-scrollbar {
+    display: none;
 }
 
 p {
-    color: white;
+    color: yellow;
 }
 
 
@@ -15,7 +28,7 @@ p {
     align-items: center;
     margin-bottom: 20px;
     padding: 10px;
-    box-shadow: 2px 2px 20px white;
+    /* box-shadow: 2px 2px 20px white; */
     background-image: black;
     border-radius: 50px;
 
@@ -32,6 +45,7 @@ p {
     position: fixed;
     top: 0;
     right: 0;
+
 }
 
 
@@ -45,7 +59,7 @@ p {
 }
 
 .container h1 {
-    color: white;
+    color: red;
     font-size: 20px;
     margin: 10px 0;
 }
@@ -55,10 +69,17 @@ p {
     margin: 5px 0;
 }
 
+.container .price {
+    color: yellowgreen;
+    font-size: 20px;
+    margin: 10px 0;
+}
+
 button {
     color: azure;
-    background-color: black;
+    background-color: rgb(61, 61, 138);
     border-radius: 10px;
+    border-color: none;
 }
 
 ul {

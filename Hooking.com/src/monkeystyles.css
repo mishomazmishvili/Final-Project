@@ -1,5 +1,5 @@
 body {
-    /* background-image: linear-gradient(147deg, #000000 0%, #434343 74%); */
+
     background-image: url(/Hooking.com/imgs/babuin.jpg);
     background-repeat: no-repeat;
     background-position: center center;
@@ -7,12 +7,12 @@ body {
     position: relative;
     width: 100%;
     height: 100%;
+    font-family: "Audiowide", sans-serif;
 }
 
 body::-webkit-scrollbar {
     display: none;
 }
-
 
 
 .navbar-brand {
@@ -30,6 +30,10 @@ body::-webkit-scrollbar {
 
 h1 {
     color: white;
+}
+
+h1:hover {
+    color: #ffa500;
 }
 
 h2 {
@@ -57,6 +61,12 @@ h3 {
     font-size: 25px;
     color: white;
 }
+
+.servicep:hover {
+    color: red;
+}
+
+
 
 .servicec {
     font-size: 35px;

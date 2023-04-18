@@ -1,96 +1,3 @@
-// import products from './data.js';
-// console.log(products);
-
-// const container = document.getElementById('products-list');
-// products.forEach((product) => {
-//     container.innerHTML += `
-//     <div class="container">
-//       <div class= "imgcontainer">
-//         <img src="${product.image}" alt="${products.title}">
-//       </div>
-//       <div class="mt-3">
-//         <h1>${product.title}</h1>
-//         <p> Description:${product.description}</p>
-//         <p> Price:${product.price}</p>
-//       </div>
-//       <button>Add to cart</button>
-//     </div>
-//   `;
-// })
-
-// const btn = document.querySelector("button");
-// btn.forEach((btn) => {
-//     btn.addEventListener('click', () => {
-//         console.log(btn.parentElement.children[1].children[0].textContent);
-//     })
-// })
-
-
-// import products from './data.js';
-
-// const container = document.getElementById('products-list');
-// const cart = [];
-
-// products.forEach((product) => {
-//     container.innerHTML += `
-//     <div class="container">
-//       <div class= "imgcontainer">
-//         <img src="${product.image}" alt="${product.title}">
-//       </div>
-//       <div class="mt-3">
-//         <h1>${product.title}</h1>
-//         <p> Description:${product.description}</p>
-//         <p> Price:${product.price}</p>
-//       </div>
-//       <button class="add-to-cart-btn">Add to cart</button>
-//     </div>
-//   `;
-// });
-
-// const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
-
-// addToCartButtons.forEach((btn) => {
-//     btn.addEventListener('click', () => {
-//         const productTitle = btn.parentElement.children[1].children[0].textContent;
-//         const selectedProduct = products.find(product => product.title === productTitle);
-//         cart.push(selectedProduct);
-//         localStorage.setItem('cart', JSON.stringify(cart));
-//         console.log(`${productTitle} has been added to the cart`);
-//     });
-// });
-
-// let cartItems = [];
-
-// const addToCartBtns = document.querySelectorAll('button');
-// addToCartBtns.forEach((btn) => {
-//     btn.addEventListener('click', () => {
-//         const product = btn.parentElement;
-//         const title = product.querySelector('h1').textContent;
-//         const price = product.querySelector('p:last-of-type').textContent;
-//         const item = { title, price };
-//         cartItems.push(item);
-//         console.log(cartItems);
-//     });
-// });
-
-// const shoppingCart = document.getElementById('shopping-cart');
-// shoppingCart.addEventListener('click', () => {
-//     if (cartItems.length > 0) {
-//         let cartContent = '';
-//         cartItems.forEach((item) => {
-//             cartContent += `
-//                 <div>
-//                     <p>${item.title}</p>
-//                     <p>${item.price}</p>
-//                 </div>
-//             `;
-//         });
-//         shoppingCart.innerHTML = cartContent;
-//     } else {
-//         shoppingCart.innerHTML = alert('<p>Your cart is empty</p>');
-//     }
-// });
-
 
 import products from './data.js';
 
@@ -106,7 +13,7 @@ products.forEach((product) => {
       <div class="mt-3">
         <h1>${product.title}</h1>
         <p> Description:${product.description}</p>
-        <p> Price:${product.price}</p>
+        <p class=price> Price:${product.price}</p>
       </div>
       <button class="add-to-cart-btn">Add to cart</button>
     </div>
@@ -157,8 +64,10 @@ shoppingCart.addEventListener('click', () => {
         });
         shoppingCart.innerHTML = cartContent;
     } else {
-        shoppingCart.innerHTML = alert('<p>Your cart is empty</p>');
+        shoppingCart.innerHTML = alert('Your cart is empty');
     }
 });
+
+
 
 
