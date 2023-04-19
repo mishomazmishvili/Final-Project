@@ -1,73 +1,111 @@
 
-import products from './data.js';
 
-const container = document.getElementById('products-list');
-const cart = [];
 
-products.forEach((product) => {
-    container.innerHTML += `
-    <div class="container">
-      <div class= "imgcontainer">
-        <img src="${product.image}" alt="${product.title}">
+let shop = document.getElementById("shop");
+
+/**
+ * ! Basket to hold all the selected items
+ * ? the getItem part is retrieving data from the local storage
+ * ? if local storage is blank, basket becomes an empty array
+ */
+
+let basket = JSON.parse(localStorage.getItem("data")) || [];
+
+/**
+ * ! Generates the shop with product cards composed of
+ * ! images, title, price, buttons, description
+ */
+
+let generateShop = () => {
+  return (shop.innerHTML = shopItemsData
+    .map((x) => {
+      let { id, name, desc, img, price } = x;
+      let search = basket.find((y) => y.id === id) || [];
+      return `
+    <div id=product-id-${id} class="item">
+      <img width="220" src=${img} alt="">
+      <div class="details">
+        <h3>${name}</h3>
+        <p>${desc}</p>
+        <div class="price-quantity">
+          <h2>$ ${price} </h2>
+          <div class="buttons">
+            <i onclick="decrement(${id})" class="bi bi-dash-lg"></i>
+            <div id=${id} class="quantity">${
+        search.item === undefined ? 0 : search.item
+      }</div>
+            <i onclick="increment(${id})" class="bi bi-plus-lg"></i>
+          </div>
+        </div>
       </div>
-      <div class="mt-3">
-        <h1>${product.title}</h1>
-        <p> Description:${product.description}</p>
-        <p class=price> Price:${product.price}</p>
-      </div>
-      <button class="add-to-cart-btn">Add to cart</button>
-    </div>
-  `;
-});
+  </div>
+    `;
+    })
+    .join(""));
+};
 
-const addToCartButtons = document.querySelectorAll(".add-to-cart-btn");
+generateShop();
 
-addToCartButtons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        const productTitle = btn.parentElement.children[1].children[0].textContent;
-        const selectedProduct = products.find(product => product.title === productTitle);
-        cart.push(selectedProduct);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        console.log(`${productTitle} has been added to the cart`);
+/**
+ * ! used to increase the selected product item quantity by 1
+ */
+
+let increment = (id) => {
+  let selectedItem = id;
+  let search = basket.find((x) => x.id === selectedItem.id);
+
+  if (search === undefined) {
+    basket.push({
+      id: selectedItem.id,
+      item: 1,
     });
-});
+  } else {
+    search.item += 1;
+  }
 
-const cartContent = document.createElement('div');
-cartContent.classList.add('cart-content');
-document.body.appendChild(cartContent);
+  console.log(basket);
+  update(selectedItem.id);
+  localStorage.setItem("data", JSON.stringify(basket));
+};
 
-let cartItems = [];
+/**
+ * ! used to decrease the selected product item quantity by 1
+ */
 
-const addToCartBtns = document.querySelectorAll('button');
-addToCartBtns.forEach((btn) => {
-    btn.addEventListener('click', () => {
-        const product = btn.parentElement;
-        const title = product.querySelector('h1').textContent;
-        const price = product.querySelector('p:last-of-type').textContent;
-        const item = { title, price };
-        cartItems.push(item);
-        console.log(cartItems);
-    });
-});
+let decrement = (id) => {
+  let selectedItem = id;
+  let search = basket.find((x) => x.id === selectedItem.id);
 
-const shoppingCart = document.getElementById('shopping-cart');
-shoppingCart.addEventListener('click', () => {
-    if (cart.length > 0) {
-        let cartContent = '';
-        cart.forEach((item) => {
-            cartContent += `
-                <div>
-                    <p>${item.title}</p>
-                    <p>${item.price}</p>
-                </div>
-            `;
-        });
-        shoppingCart.innerHTML = cartContent;
-    } else {
-        shoppingCart.innerHTML = alert('Your cart is empty');
-    }
-});
+  if (search === undefined) return;
+  else if (search.item === 0) return;
+  else {
+    search.item -= 1;
+  }
 
+  update(selectedItem.id);
+  basket = basket.filter((x) => x.item !== 0);
+  console.log(basket);
+  localStorage.setItem("data", JSON.stringify(basket));
+};
 
+/**
+ * ! To update the digits of picked items on each item card
+ */
 
+let update = (id) => {
+  let search = basket.find((x) => x.id === id);
+  document.getElementById(id).innerHTML = search.item;
+  calculation();
+};
+
+/**
+ * ! To calculate total amount of selected Items
+ */
+
+let calculation = () => {
+  let cartIcon = document.getElementById("cartAmount");
+  cartIcon.innerHTML = basket.map((x) => x.item).reduce((x, y) => x + y, 0);
+};
+
+calculation();
 
