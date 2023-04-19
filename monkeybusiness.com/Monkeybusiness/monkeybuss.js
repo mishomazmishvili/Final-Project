@@ -37,7 +37,7 @@ const deliveryContainer = document.getElementById('delivery-container');
 const deliveryText = document.getElementById('delivery-text');
 
 deliveryContainer.addEventListener('mouseover', () => {
-    deliveryText.textContent = `Don't believe everything you read here.`;
+    deliveryText.textContent = `For Monkeys time works differently.`;
 });
 
 deliveryContainer.addEventListener('mouseout', () => {
